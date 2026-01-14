@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Shianne Durdin Vision Support Coach</title>
+  <style>
+    /* ==========
+       Accessible, high-contrast, low-clutter design
+       ========== */
+
+    /* Basic reset (kept minimal for readability and stability) */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    :root{
+      --bg: #0b0f14;
+      --panel: #101826;
+      --panel2: #0f1724;
+      --text: #ffffff;
+      --muted: #d9e3f0;
+      --border: #2a3a52;
+      --focus: #ffd400;
+      --link: #8fd3ff;
+      --link-hover: #bfe7ff;
+
+      /* Font scaling */
+      --base-font: 20px; /* user adjustable up to 48px */
+      --line: 1.7;
+      --radius: 14px;
+      --shadow: 0 10px 28px rgba(0,0,0,.35);
+      --max: 980px;
+    }
+
+    /* Respect users who prefer light mode by providing a light scheme too */
+    @media (prefers-color-scheme: light) {
+      :root{
+        --bg: #ffffff;
+        --panel: #f6f8fb;
+        --panel2: #ffffff;
+        --text: #0b0f14;
+        --muted: #1f2a37;
+        --border: #c7d2e3;
+        --focus: #0b63ff;
+        --link: #0b63ff;
+        --link-hover: #0a4fd1;
+        --shadow: 0 10px 28px rgba(15,23,42,.14);
+      }
+    }
+
+    html { font-size: var(--base-font); }
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: var(--line);
+      letter-spacing: 0.2px;
+      text-rendering: optimizeLegibility;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a{
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+    }
+    a:hover{ color: var(--link-hover); }
+    a:focus-visible, button:focus-visible, iframe:focus-visible{
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      transform: translateY(-140%);
+      background: var(--text);
+      color: var(--bg);
+      padding: 10px 14px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      z-index: 9999;
+      font-weight: 700;
+    }
+    .skip-link:focus{
+      transform: translateY(0);
+    }
+
+    header{
+      padding: 26px 18px 12px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%);
+    }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .brand{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .logo-frame{
+      width: min(420px, 92vw);
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius); background: var(--panel2);
+      box-shadow: var(--shadow);
+    }
+
+    /* Inline SVG scales nicely */
+    .logo-svg{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    h1{
+      margin: 10px 0 0;
+      font-size: 1.7rem;
+      line-height: 1.25;
+      letter-spacing: 0.4px;
+    }
+
+    .controls{
+      margin: 14px 0 6px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn{
+      appearance: none;
+      border: 2px solid var(--border);
+      background: var(--panel2);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 750;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+    .btn:hover{ border-color: var(--link); }
+    .btn:active{ transform: translateY(1px); }
+
+    .hint{
+      margin: 10px auto 0;
+      max-width: 52rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    main{
+      padding: 18px 18px 34px;
+    } section{
+      margin: 18px 0;
+      padding: 18px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--panel2);
+      box-shadow: var(--shadow);
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    p{ margin: 10px 0; }
+    .note{
+      padding: 12px 14px;
+      border-left: 6px solid var(--link);
+      background: rgba(143, 211, 255, 0.10);
+      border-radius: 12px;
+      margin: 14px 0 10px;
+    }
+
+    .programs{
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .program{
+      padding: 14px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.00) 100%);
+    }
+
+    .program strong{
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .availability{
+      list-style: none; padding-left: 0;
+      margin: 10px 0 0;
+      display: grid;
+      gap: 8px;
+    }
+    .availability li{
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .iframe-wrap{
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    iframe{
+      width: 100%;
+      height: 920px;
+      border: 0;
+      display: block;
+      background: #ffffff; /* Google Forms renders best on white */
+    }
+
+    footer{
+      padding: 18px 18px 30px;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--panel) 100%);
+    }
+
+    .small{
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* Visually hidden, screen-reader accessible */
+    .sr-only{
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0,0,0,0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
+    <div class="wrap brand">
+      <!-- Accessible logo: inline SVG with <title> and <desc>.
+           The SVG includes the tagline text as requested. -->
+      <div class="logo-frame" role="img" aria-label="Logo: an eye with the words Blindness Is A Different Kind of Vision written below in clearly readable font.">
+        <svg class="logo-svg" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" aria-labelledby="logoTitle logoDesc" role="img">
+          <title id="logoTitle">Shianne Durdin Vision Support Coach logo</title>
+          <desc id="logoDesc">
+            A simple, high-contrast logo featuring a stylised eye icon centered above the words
+            “Blindness Is A Different Kind of Vision” in large, clearly readable text.
+          </desc>
+
+          <!-- Background (transparent to match site) -->
+          <!-- Eye icon -->
+          <g transform="translate(0,0)">
+            <path d="M120 95 C 220 20, 380 20, 480 95 C 380 170, 220 170, 120 95 Z"
+                  fill="none" stroke="currentColor" stroke-width="12" />
+            <circle cx="300" cy="95" r="46" fill="none" stroke="currentColor" stroke-width="12"/>
+            <circle cx="300" cy="95" r="18" fill="currentColor"/>
+            <!-- Decorative arc -->
+            <path d="M170 95 C 235 60, 365 60, 430 95"
+                  fill="none" stroke="currentColor" stroke-width="8" opacity="0.9"/>
+          </g>
+
+          <!-- Tagline text inside the image -->
+          <text x="450" y="220" text-anchor="middle"
+                font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+                font-size="42" font-weight="800" fill="currentColor">
+            Blindness Is A Different Kind of Vision
+          </text>
+        </svg>
+      </div>
+
+      <h1>Shianne Durdin Vision Support Coach</h1>
+
+      <!-- Font controls placed below logo as requested -->
+      <div class="controls" aria-label="Font size controls">
+        <button class="btn" type="button" id="decreaseFont">A-</button>
+        <button class="btn" type="button" id="increaseFont">A+</button>
+        <button class="btn" type="button" id="resetFont">Reset font</button>
+      </div>
+
+      <!-- ARIA live announcement for font-size changes -->
+      <div id="fontStatus" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+      <p class="hint">
+        Tip: Use the “A+” and “A-” buttons to adjust text size up to 48. Use “Reset font” to return to the default size.
+        This website is designed to be keyboard and screen-reader friendly for JAWS, NVDA, and VoiceOver.
+      </p>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap" tabindex="-1">
+    <section aria-labelledby="desc">
+      <h2 id="desc">Description</h2>
+      <p>
+        As a child, I was fortunate to have attended a blind school where I received support in various aspects of life with low vision such as assistive technology, braille courses and adaptive sports, however, I always lacked the comfort of having people I could talk to, who had the lived experience of a blind or low vision individual. And that is why as a support coach for the vision impaired, I not only offer personalised braille services and screen reader training, tailored advice on pathways for the future, and strategies for a more independent daily life, I also offer mentorship. A space of understanding. A place where each and every one of my clients feels heard and validated. Because while blindness might mean lack of sight, it does not mean lack of vision.
+        Online platform Zoom will be used for all appointments and programs, all of which are designed to cater to blind and low vision individuals, as well as parents and allies.
+      </p>
+    </section>
+
+    <section aria-labelledby="braille-services">
+      <h2 id="braille-services">Braille Services</h2>
+      <p>
+        In addition to these programs, I also offer customised braille cards, lists, labels and letters, e.g. birthday cards for loved ones, tooth fairy notes for children, personalised short early reader books, spelling lists for school, pantry labels etc. Pricing varies depending on length, with a custom letter costing approximately 25 to 30 aud$ and a card between aud$15 and aud$20.
+        Contact me via email at:
+        <a href="mailto:shianne.blvcoach@gmail.com">shianne.blvcoach@gmail.com</a>
+        for more information.
+      </p>
+    </section>
+
+    <section aria-labelledby="teachers">
+      <h2 id="teachers">Services For Teachers</h2>
+      <p>
+        If you currently teach a blind child who needs documents or learning material in a more accessible format, I am here to help. Simply email your document to me at least 5 days in advance, and ask your student to complete the short Q &amp; A form below.
+      </p>
+
+      <div class="iframe-wrap" aria-label="Q and A form for teachers and students">
+        <iframe
+          title="Q &amp; A form for teachers and students"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdOVEoTx0e7xms9yrcZRYsBqGIb7WI4siHd4hNfvyX78Qqb9g/viewform?embedded=true">
+        </iframe>
+      </div>
+
+      <p class="note">
+        Pricing ranges from aud$3 to aud$7 per standard print page. Contact me via email at,
+        <a href="mailto:shianne.blvcoach@gmail.com">shianne.blvcoach@gmail.com</a>
+        for more information.
+      </p>
+    </section>
+
+    <section aria-labelledby="image-desc">
+      <h2 id="image-desc">Image Description Implementation for Companies And Content Creators</h2>
+      <p>
+        I help make the digital world a more inclusive place for blind and vision impaired screen reader users by writing and embedding detailed, high quality image descriptions directly into your social media posts with your permission, and testing them with screen readers. Pricing varies, with a typical basic image costing aud$3 to aud$5.
+        Email me at,
+        <a href="mailto:shianne.blvcoach@gmail.com">shianne.blvcoach@gmail.com</a>
+        for more information.
+      </p>
+    </section>
+
+    <section aria-labelledby="programs">
+      <h2 id="programs">Programs</h2>
+
+      <!-- Programs are list-like under ONE heading, with bold titles but NOT headings -->
+      <ul class="programs">
+        <li class="program">
+          <strong>6 week introduction to navigating a computer using Jaws</strong>
+          <span>This one-on-one online program provides weekly 1 hour sessions and costs a total of aud$260 due before the beginning of the second session. The program involves navigating file explorer and word documents, creating and saving files, connecting to internet and Bluetooth devices, configuring settings, accessing the internet via Google Chrome, various Jaws specific shortcuts, as well as anything the client would like to learn.</span>
+        </li>
+
+        <li class="program">
+          <strong>6 week introduction to using iPad and iPhone with voice over</strong>
+          <span>This one-on-one online program provides weekly 1 hour sessions for a total cost of aud$280 due before the beginning of the third session. The program explores sending and replying to emails and messages, making calls, configuring settings, navigating websites and well-known apps, navigating documents, as well as anything the client would like to learn.</span>
+        </li>
+
+        <li class="program">
+          <strong>6 Week Intermediate iPad and iPhone Navigation Using Voice Over</strong>
+          <span>This one-on-one online program costs aud$290 due before the beginning of the second session. The program explores various Voice Over shortcuts, downloading attachments within emails and messages, sending emails and messages with attachments, installing and using third party apps Be My Eyes and Seeing AI, using braille screen input mode (a mode which allows users to type on screen using braille entry), as well as anything the client would like to learn.</span>
+        </li>
+
+        <li class="program">
+          <strong>8 week Exploring Pathways</strong>
+          <span>This group online program provides weekly 1 hour sessions for a cost of aud$280 due by the beginning of the third session. The program involves daily living skills, goal setting, peer mentoring and emotional support. The first session will explore your current, short term and long term goals as an individual with blindness or low vision, and every appointment will begin with a check-in of what you feel you need for the session.</span>
+        </li>
+
+        <li class="program">
+          <strong>4 week introduction to Basic Braille</strong>
+          <span>This one-on-one online program provides weekly 45 minute sessions for a cost of aud$230 due before the beginning of the second session. It explores the braille alphabet, basic Maths symbols, and anything else the client would like to learn.</span>
+          <span> Braille paper and a braille machine are required for this program. Additional learning resources will be sent via post.</span>
+        </li>
+
+        <li class="program">
+          <strong>6 Week Intermediate Braille</strong>
+          <span>This one-on-one online program provides weekly 1 hour sessions for a cost of aud$310 due before the beginning of the second session. The program explores single combinations of dots that can be used to write entire words, known as contractions, punctuation markings, intermediate Maths symbols, a brief history of braille as well as anything the client would like to learn.</span>
+          <span> A braille machine and braille paper are required for this program. Additional learning resources will be sent via post.</span>
+        </li>
+
+        <li class="program"> <strong>6 Week Introduction To Braille Music</strong>
+          <span>This one-on-one online program provides weekly 45 minute sessions for a cost of aud$320 due before the beginning of the second session. The program explores basic notation and rhythm, writing scales in braille, composing simple melodies as well as anything the client would like to learn.</span>
+          <span> Braille paper and a braille machine are required for this program. Additional learning resources will be sent via post.</span>
+        </li>
+
+        <li class="program">
+          <strong>6 Week Intermediate Braille Music</strong>
+          <span>This one-on-one online program provides weekly 1 hour sessions for a total cost of aud$350 due before the beginning of the third session. The program explores writing chords in braille, composing piano music for left and right hands, key and time signatures and syncopated rhythms, how to set out a piano score, various symbols such as repeats and dynamic markings as well as anything the client would like to learn.</span>
+          <span> Braille paper and a braille machine are required for this program. Additional learning resources will be sent via post.</span>
+        </li>
+      </ul>
+
+      <p class="note">
+        Every program can be modified to meet the needs of the client.
+        If you have any other topics you may wish to discuss when it comes to adapting to life with low vision such as sports for the blind, orientation and mobility, services that can assist with daily independence etc. you can also book individual sessions separate to any of these programs.
+      </p>
+    </section>
+
+    <section aria-labelledby="individual">
+      <h2 id="individual">If You Book an Individual Session</h2>
+      <p class="note">
+        Note: The information in this heading only applies if you are booking an individual session, separate from the programs listed above.
+        Each appointment will vary from between 30 minutes to 1 hour, depending on your preference. Online communication platform Zoom will be used, and parents are more than welcome to be a part of these sessions.
+        Individual sessions typically cost AUD $25 for 30 minutes, AUD $40 for 45 minutes and AUD $50 for 1 hour, however costing is flexible. Invoices will be written and sent after each session.
+      </p>
+    </section>
+
+    <section aria-labelledby="availability">
+      <h2 id="availability">Availability</h2>
+      <ul class="availability" aria-label="Weekly availability in list format">
+        <li><strong>Monday:</strong> Available from 4 PM–8 PM</li>
+        <li><strong>Tuesday:</strong> Unavailable.</li>
+        <li><strong>Wednesday:</strong> Available from 4 PM–7 PM.</li>
+        <li><strong>Thursday:</strong> Available from 4 PM–8:30 PM.</li>
+        <li><strong>Friday:</strong> Available from 4 PM–6:30 PM.</li>
+        <li><strong>Saturday:</strong> Available from 4 PM–8 PM.</li>
+        <li><strong>Sunday:</strong> Available from 10 AM–5 PM.</li>
+      </ul>
+      <p class="small">All times listed above are relevant to Australian Central Standard time.</p>
+    </section>
+
+    <section aria-labelledby="register">
+      <h2 id="register">Register For A Tailored Program Or Session</h2>
+      <p>
+        Fill out the form below to register for an individual session, or one of the programs above. Your response will be forwarded to me via email and I will contact you within 7 business days regarding your registration!
+      </p>
+
+      <div class="iframe-wrap" aria-label="Registration form for tailored program or session">
+        <iframe
+          title="Register for a tailored program or session form"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSe9mwoFYklA6rcwiCISmw88I4VYha0BRCZm6GT8J6CEi1qwTA/viewform?embedded=true">
+        </iframe>
+      </div>
+    </section>
+
+    <section aria-labelledby="contact">
+      <h2 id="contact">Get in Contact</h2>
+      <p>
+        If you have any feedback or inquiries please don't hesitate to email
+        <a href="mailto:shianne.blvcoach@gmail.com">shianne.blvcoach@gmail.com</a>
+      </p>
+      <p><strong>ABN:</strong> 49573074386</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="small">
+        Disclaimer: I do not currently hold any youth work or counselling qualifications. I am someone who seeks to share knowledge and independence strategies with the next generation of people who are blind or have low vision through personal experience. I hold a Working With Children's check and a Working With Vulnerable People's check, both valid until 2029.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Font size controls: default 20px, min 16px, max 48px, step 2px.
+      var root = document.documentElement;
+      var status = document.getElementById('fontStatus');
+
+      var DEFAULT = 20;
+      var MIN = 16;
+      var MAX = 48;
+      var STEP = 2;
+
+      function getCurrent() {
+        var val = getComputedStyle(root).getPropertyValue('--base-font').trim();
+        var num = parseInt(val.replace('px',''), 10);
+        return isNaN(num) ? DEFAULT : num;
+      }
+
+      function setFont(px) {
+        var clamped = Math.max(MIN, Math.min(MAX, px));
+        root.style.setProperty('--base-font', clamped + 'px');
+
+        // ARIA-live announcement for screen reader users.
+        // Keep it short and clear.
+        status.textContent = 'Font size set to ' + clamped + ' pixels.';
+      }
+
+      document.getElementById('increaseFont').addEventListener('click', function () {
+        setFont(getCurrent() + STEP);
+      });
+
+      document.getElementById('decreaseFont').addEventListener('click', function () {
+        setFont(getCurrent() - STEP);
+      });
+
+      document.getElementById('resetFont').addEventListener('click', function () {
+        setFont(DEFAULT);
+        status.textContent = 'Font size reset to default ' + DEFAULT + ' pixels.';
+      });
+
+      // Ensure default is set explicitly for consistency across browsers.
+      setFont(DEFAULT);
+    })();
+  </script>
+</body>
+</html>
